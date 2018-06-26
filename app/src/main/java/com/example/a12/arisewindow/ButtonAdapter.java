@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class ButtonAdapter extends BaseAdapter {
 
             holder = new ViewHolder();
             view = lInflater.inflate(R.layout.item, null);
-            holder.button = (Button) view.findViewById(R.id.button);
+            holder.button = (TextView) view.findViewById(R.id.button);
             view.setTag(holder);
 
         } else {
@@ -64,19 +65,19 @@ public class ButtonAdapter extends BaseAdapter {
 
         holder.button.setText(titleList[i]);
 
-        holder.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                char symbol = String.valueOf(holder.button.getText()).toCharArray()[0];
-                buttonClickListener.ButtonOnClick(symbol);
-            }
-        });
+//        holder.button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                char symbol = String.valueOf(holder.button.getText()).toCharArray()[0];
+//                buttonClickListener.ButtonOnClick(symbol);
+//            }
+//        });
         return view;
     }
 
 
     private class ViewHolder {
-        Button button;
+        TextView button;
         int ref;
     }
 }

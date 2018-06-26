@@ -18,16 +18,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final TextView mainTextView = (TextView) findViewById(R.id.mainTextView);
-        CustomDialog customDialog = new CustomDialog(this);
+//        CustomDialog customDialog = new CustomDialog(this);
 
-        LayoutInflater inflater = LayoutInflater.from(this);
-        final View dialog_layout = inflater.inflate(R.layout.dialog, null, false);
-        final TextView textView = (TextView) dialog_layout.findViewById(R.id.textView);
-        Button button = (Button) dialog_layout.findViewById(R.id.mainButton);
+        Button button = (Button) findViewById(R.id.mainButton);
         //error here
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+                final View dialog_layout = inflater.inflate(R.layout.dialog, null, false);
+                final TextView textView = (TextView) dialog_layout.findViewById(R.id.textView);
                 initNumberGVnew(textView, dialog_layout);
                 initAlphabetGVnew(textView, dialog_layout);
                 AlertDialog.Builder db = new AlertDialog.Builder(MainActivity.this);
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initAlphabetGVnew(final TextView textView, View view) {
-        GridView gridViewA = findViewById(R.id.gridOfAlphabet);
+        GridView gridViewA = view.findViewById(R.id.gridOfAlphabet);
         final String[] alphabet = view.getContext().getResources().getStringArray(R.array.alphabet);
         gridViewA.setAdapter(new ButtonAdapter(view.getContext(), alphabet));
         gridViewA.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initNumberGVnew(final TextView textView, View view) {
-        GridView gridViewN = findViewById(R.id.gridOfNumbers);
+        GridView gridViewN = view.findViewById(R.id.gridOfNumbers);
         final String[] numbers = view.getContext().getResources().getStringArray(R.array.numbers);
         gridViewN.setAdapter(new ButtonAdapter(view.getContext(), numbers));
         gridViewN.setOnItemClickListener(new AdapterView.OnItemClickListener() {
